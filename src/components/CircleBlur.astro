@@ -14,7 +14,10 @@
         width: 640px;
         height: 640px;
         filter: blur(200px);
-        background: hsla(var(--color), 63%, 36%, 1);
-        animation: fade-up 600ms ease-in forwards;
+        background-color: hsla(var(--color), 63%, 36%, 1);
+        transition: background-color 400ms ease-in-out;
+        animation: fade-up 400ms ease-in forwards;
+        border-radius: 50%;
+        pointer-events: none;
     }
 </style>

@@ -35,3 +35,15 @@ const { title } = Astro.props;
 			Bitstream Vera Sans Mono, Courier New, monospace;
 	}
 </style>
+
+<script is:inline>
+	const colors = [193, 341, 263]
+	let currentColorKey = 0;
+	const updateColor = () => {
+		if (!colors[currentColorKey]) { currentColorKey = 0}
+		const color = colors[currentColorKey]
+		currentColorKey++
+		document.querySelector(':root').style.setProperty('--color', color);
+	}
+	setInterval(updateColor, 5000)
+</script>
