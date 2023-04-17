@@ -1,0 +1,20 @@
+<div class="circle-blur" />
+
+<style lang="scss">
+    @keyframes fade-up {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+    .circle-blur {
+        position: absolute;
+        inset: 0;
+        margin: auto;
+        max-width: 70vw;
+        max-height: 70vh;
+        width: 640px;
+        height: 640px;
+        filter: blur(200px);
+        background: hsla(var(--color), 63%, 36%, 1);
+        animation: fade-up 600ms ease-in forwards;
+    }
+</style>

@@ -1,0 +1,19 @@
+<div class="grain" />
+
+<style lang="scss">
+    @keyframes grain {
+        from { transform: translate(0, 0); }
+        to { transform: translate(-10%, -10%); }
+    }
+
+    .grain {
+        position: fixed;
+        height: 300%;
+        width: 300%;
+        background-image: url("/noise.webp");
+        background-size: 100px;
+        mix-blend-mode: multiply;
+        transform:translate(0, 0);
+        animation: grain 2s steps(10) infinite;
+    }
+</style>
