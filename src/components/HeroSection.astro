@@ -25,10 +25,12 @@ import Nav from "./Nav.astro";
 <style lang="scss">
     .hero {
         position: relative;
+        z-index: 3;
         min-height: 100vh;
         width: 100%;
         background-color: hsla(var(--color), 43%, 16%, 1);
         transition: background-color 400ms ease-in-out;
+        overflow: hidden;
     }
 
     .container {
@@ -63,7 +65,7 @@ import Nav from "./Nav.astro";
         opacity: 0;
         transform: translateX(5%);
         animation: fade-left 400ms ease-in-out forwards;
-        animation-delay: 600ms;
+        animation-delay: 200ms;
     }
 
     @keyframes fade-right {
@@ -75,7 +77,7 @@ import Nav from "./Nav.astro";
         opacity: 0;
         transform: translateX(-5%);
         animation: fade-right 400ms ease-in-out forwards;
-        animation-delay: 600ms;
+        animation-delay: 200ms;
     }
 
     .quote {
@@ -98,7 +100,7 @@ import Nav from "./Nav.astro";
         opacity: 0;
         transform: translateY(10%);
         animation: fade-up 300ms ease-in forwards;
-        animation-delay: 1200ms;
+        animation-delay: 800ms;
         margin-bottom: 41px;
 
         a {

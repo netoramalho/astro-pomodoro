@@ -1,10 +1,6 @@
 <div class="circle-blur" />
 
 <style lang="scss">
-    @keyframes fade-up {
-        0% { opacity: 0; }
-        100% { opacity: 1; }
-    }
     .circle-blur {
         position: absolute;
         inset: 0;
@@ -14,10 +10,12 @@
         width: 640px;
         height: 640px;
         filter: blur(200px);
+        -webkit-perspective: 1000;
+        -webkit-transform: translateZ(0);
         background-color: hsla(var(--color), 63%, 36%, 1);
         transition: background-color 400ms ease-in-out;
-        animation: fade-up 400ms ease-in forwards;
         border-radius: 50%;
         pointer-events: none;
+        z-index: 1;
     }
 </style>
