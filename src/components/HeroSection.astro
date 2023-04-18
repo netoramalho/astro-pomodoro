@@ -48,6 +48,11 @@ import Nav from "./Nav.astro";
         gap: 90px;
         width: 100%;
         margin: 40px 0;
+
+        @media (max-width: 1100px) {
+            flex-direction: column;
+            gap: 30px;
+        }
     }
 
     @keyframes fade-left {
@@ -78,6 +83,10 @@ import Nav from "./Nav.astro";
         transform: translateX(-5%);
         animation: fade-right 400ms ease-in-out forwards;
         animation-delay: 200ms;
+
+        @media (max-width: 1100px) {
+            max-width: 500px;
+        }
     }
 
     .quote {
