@@ -11,9 +11,9 @@ import Nav from "./Nav.astro";
     <Container class="container">
         <Nav />
         <div class="wrap">
-            <div class="copy">
-                <p class="quote">“Productivity is being able to do things that you were never able to do before.” — Franz Kafka</p>
-            </div>
+            <p class="quote">
+                “Productivity is being able to do things that you were never able to do before.” — Franz Kafka
+            </p>
             <div class="card" />
         </div>
         <div class="by">
@@ -50,7 +50,11 @@ import Nav from "./Nav.astro";
         width: 100%;
         margin: 40px 0;
 
-        @media (max-width: 1100px) {
+        @media (max-width: 900px) {
+            gap: 50px;
+        }
+
+        @media (max-width: 800px) {
             flex-direction: column;
             gap: 30px;
         }
@@ -78,22 +82,22 @@ import Nav from "./Nav.astro";
         from { opacity: 0; transform: translateX(-5%); }
         to { opacity: 1; transform: translateX(0); }
     }
-    .copy {
-        max-width: 601px;
+
+    .quote {
+        max-width: 40vw;
         opacity: 0;
         transform: translateX(-5%);
         animation: fade-right 400ms ease-in-out forwards;
         animation-delay: 200ms;
 
-        @media (max-width: 1100px) {
-            max-width: 500px;
-        }
-    }
-
-    .quote {
         color: rgba(255, 255, 255, 0.6);
         font-size: 36px;
+        font-size: clamp(22px, 2.4vw, 56px);
         line-height: 145%;
+
+        @media (max-width: 800px) {
+            max-width: 500px;
+        }
     }
 
     @keyframes fade-up {
