@@ -1,15 +1,24 @@
-<div class="circle-blur" />
+<div id="circle" class="circle-blur" />
+
+<script is:inline>
+document.addEventListener('mousemove', function(e) {
+    let circle = document.getElementById('circle');
+    const offset = circle.offsetWidth / 2
+    let left = e.x - offset;
+    let top = e.y - offset;
+    circle.style.left = `${left}px`;
+    circle.style.top = `${top}px`;
+});
+</script>
 
 <style lang="scss">
     .circle-blur {
         position: absolute;
-        inset: 0;
-        margin: auto;
         max-width: 70vw;
         max-height: 70vh;
         width: 640px;
         height: 640px;
-        filter: blur(200px);
+        filter: blur(300px);
         -webkit-perspective: 1000;
         -webkit-transform: translateZ(0);
         background-color: hsla(var(--color), 63%, 36%, 1);
