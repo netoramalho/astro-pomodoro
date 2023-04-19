@@ -1,0 +1,97 @@
+<div class="pomodoro-card">
+    <div id="timer" class="pomodoro-card__timer">
+        25:00
+    </div>
+    <button id="action" type="button" class="pomodoro-card__start">
+        Start
+    </button>
+</div>
+
+<script is:inline>
+    let timerInMinutes = 25
+    let interval = false
+
+    const getFormattedTimer = (mins, secs) => {
+        const minutes = mins < 10 ? `0${mins}` : mins
+        const seconds = secs < 10 ? `0${secs}` : secs
+        return `${minutes}:${seconds}`
+    }
+
+    const onComplete = (silent) => {
+        clearInterval(interval)
+        interval = false
+        document.getElementById('timer').textContent = getFormattedTimer(timerInMinutes, 0)
+        document.getElementById('action').textContent = 'Start'
+        if (!silent) {
+            alert('time is up!')
+        }
+    }
+
+    let whenTimerEnds = false
+    const updateTimer = () => {
+        const distance = whenTimerEnds - (Date.now() - 600)
+        if (distance <= 0) { return onComplete() }
+        
+        const mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+        const secs = Math.floor((distance % (1000 * 60)) / 1000)
+        document.getElementById('timer').textContent = getFormattedTimer(mins, secs)
+    }
+
+    const onAction = () => {
+        if (interval) { return onComplete(true) }
+        whenTimerEnds = new Date(Date.now() + timerInMinutes*60000)
+        interval = setInterval(updateTimer, 1000)
+        document.getElementById('action').textContent = 'Stop'
+    }
+
+    document.getElementById('action').addEventListener('click', onAction)
+</script>
+
+<style lang="scss">
+    @keyframes fade-left {
+        from { opacity: 0; transform: translateX(5%); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+    .pomodoro-card {
+        width: 100%;
+        max-width: 500px;
+        height: 442px;
+        border-radius: 10px;
+        background: rgba(217, 217, 217, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(5px);
+        opacity: 0;
+        transform: translateX(5%);
+        animation: fade-left 400ms ease-in-out forwards;
+        animation-delay: 200ms;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        &__timer {
+            color: #FFFFFF;
+            font-weight: 700;
+            font-size: 105px;
+            font-style: italic;
+        }
+
+        &__start {
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+            background: hsl(var(--color) 72.22% 57.65%);
+            border-radius: 30px;
+            text-align: center;
+            color: #FFFFFF;
+            font-size: 16px;
+            padding: 17px 50px;
+            margin-top: 10px;
+
+            &:hover {
+                background: hsl(var(--color) 42.22% 57.65%);
+            }
+        }
+    }
+</style>
