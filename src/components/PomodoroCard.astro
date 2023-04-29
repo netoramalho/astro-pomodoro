@@ -17,13 +17,43 @@
         return `${minutes}:${seconds}`
     }
 
+    const oneBeat = () => {
+        const context = new AudioContext();
+
+        const volume = context.createGain();
+        volume.gain.value = 0.1;
+        volume.connect(context.destination); 
+
+        const oscillator = context.createOscillator();
+        oscillator.type = "sine";
+        oscillator.frequency.value = 200;
+        oscillator.connect(volume);
+        
+        oscillator.start();
+        setTimeout(function () {
+            oscillator.stop();
+        }, 300);
+    }
+
+    let beepInterval = false
+    const playBeat = () => {
+        beepInterval = setInterval(oneBeat, 300)
+        setTimeout(() => {
+            clearInterval(beepInterval)
+        }, 3000)
+    }
+
     const onComplete = (silent) => {
         clearInterval(interval)
         interval = false
         document.getElementById('timer').textContent = getFormattedTimer(timerInMinutes, 0)
         document.getElementById('action').textContent = 'Start'
         if (!silent) {
+            playBeat()
+            document.title = 'time is up!'
             alert('time is up!')
+        } else {
+            document.title = 'Focus'
         }
     }
 
@@ -34,7 +64,9 @@
         
         const mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
         const secs = Math.floor((distance % (1000 * 60)) / 1000)
-        document.getElementById('timer').textContent = getFormattedTimer(mins, secs)
+        const time = getFormattedTimer(mins, secs)
+        document.getElementById('timer').textContent = time
+        document.title = time
     }
 
     const onAction = () => {
