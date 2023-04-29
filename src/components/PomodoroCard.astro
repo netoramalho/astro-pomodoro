@@ -10,6 +10,7 @@
 <script is:inline>
     let timerInMinutes = 25
     let interval = false
+    let beatInterval = false
 
     const getFormattedTimer = (mins, secs) => {
         const minutes = mins < 10 ? `0${mins}` : mins
@@ -18,29 +19,24 @@
     }
 
     const oneBeat = () => {
-        const context = new AudioContext();
+        const context = new AudioContext()
 
-        const volume = context.createGain();
-        volume.gain.value = 0.1;
-        volume.connect(context.destination); 
-
-        const oscillator = context.createOscillator();
-        oscillator.type = "sine";
-        oscillator.frequency.value = 200;
-        oscillator.connect(volume);
+        const gain = context.createGain()
+        gain.gain.value = 0.1
+        gain.connect(context.destination)
         
-        oscillator.start();
-        setTimeout(function () {
-            oscillator.stop();
-        }, 300);
+        const oscillator = context.createOscillator()
+        oscillator.type = "sine"
+        oscillator.frequency.value = 200
+        oscillator.connect(gain)
+        
+        oscillator.start()
+        setTimeout(() => oscillator.stop(), 300)
     }
-
-    let beepInterval = false
-    const playBeat = () => {
-        beepInterval = setInterval(oneBeat, 300)
-        setTimeout(() => {
-            clearInterval(beepInterval)
-        }, 3000)
+    
+    const playBeat = (time = 3000) => {
+        beatInterval = setInterval(oneBeat, 300)
+        setTimeout(() => clearInterval(beatInterval), time)
     }
 
     const onComplete = (silent) => {
@@ -74,6 +70,7 @@
         whenTimerEnds = new Date(Date.now() + timerInMinutes*60000)
         interval = setInterval(updateTimer, 1000)
         document.getElementById('action').textContent = 'Stop'
+        playBeat(300)
     }
 
     document.getElementById('action').addEventListener('click', onAction)
