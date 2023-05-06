@@ -1,4 +1,9 @@
 <div class="pomodoro-card">
+    <div class="pomodoro-card__picker">
+        <div id="pick_5">5min</div>
+        <div id="pick_15">15min</div>
+        <div id="pick_25" class="active">25min</div>
+    </div>
     <div id="timer" class="pomodoro-card__timer">
         25:00
     </div>
@@ -8,7 +13,7 @@
 </div>
 
 <script is:inline>
-    let timerInMinutes = 25
+    let durationInMinutes = 25
     let interval = false
     let beatInterval = false
 
@@ -42,8 +47,9 @@
     const onComplete = (silent) => {
         clearInterval(interval)
         interval = false
-        document.getElementById('timer').textContent = getFormattedTimer(timerInMinutes, 0)
+        document.getElementById('timer').textContent = getFormattedTimer(durationInMinutes, 0)
         document.getElementById('action').textContent = 'Start'
+        enablePicker()
         if (!silent) {
             playBeat()
             document.title = 'time is up!'
@@ -65,15 +71,36 @@
         document.title = time
     }
 
-    const onAction = () => {
+    const toggleTimer = () => {
         if (interval) { return onComplete(true) }
-        whenTimerEnds = new Date(Date.now() + timerInMinutes*60000)
+        whenTimerEnds = new Date(Date.now() + durationInMinutes*60000)
         interval = setInterval(updateTimer, 1000)
         document.getElementById('action').textContent = 'Stop'
+        disablePicker()
         playBeat(300)
     }
 
-    document.getElementById('action').addEventListener('click', onAction)
+    document.getElementById('action').addEventListener('click', toggleTimer)
+
+    const updateTimeDuration = (duration) => {
+        if (interval) { return }
+        durationInMinutes = duration
+        document.getElementById('timer').textContent = `${durationInMinutes}:00`
+        document.querySelector('.pomodoro-card__picker .active').classList.remove("active")
+        document.getElementById(`pick_${duration}`).classList.add("active")
+    }
+
+    document.getElementById('pick_5').addEventListener('click', () => { updateTimeDuration(5) })
+    document.getElementById('pick_15').addEventListener('click', () => { updateTimeDuration(15) })
+    document.getElementById('pick_25').addEventListener('click', () => { updateTimeDuration(25) })
+
+    const disablePicker = () => {
+        document.querySelector('.pomodoro-card__picker').classList.add("pomodoro-card__picker--disabled")
+    }
+
+    const enablePicker = () => {
+        document.querySelector('.pomodoro-card__picker').classList.remove("pomodoro-card__picker--disabled")
+    }
 </script>
 
 <style lang="scss">
@@ -97,7 +124,57 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
+        justify-content: space-around;
+
+        &__picker {
+            display: flex;
+            max-width: 349px;
+            margin: 0 auto;
+            width: 100%;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        &__picker div {
+            cursor: pointer;
+            padding: 13px;
+            flex: 1;
+            text-align: center;
+            font-size: 16px;
+            font-style: italic;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.8);
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.08);
+            }
+
+            &:first-child {
+                border-right: 1px solid rgba(255, 255, 255, 0.15);
+                border-top-left-radius: 30px;
+                border-bottom-left-radius: 30px;
+            }
+
+            &:last-child {
+                border-left: 1px solid rgba(255, 255, 255, 0.15);
+                border-top-right-radius: 30px;
+                border-bottom-right-radius: 30px;
+            }
+
+            &.active {
+                text-decoration-line: underline;
+                text-underline-offset: 2px;
+                background: rgba(255, 255, 255, 0.08);
+            }
+        }
+
+        &__picker--disabled div {
+            cursor: not-allowed;
+
+            &:hover {
+                background: inherit;
+            }
+        }
 
         &__timer {
             color: #FFFFFF;
