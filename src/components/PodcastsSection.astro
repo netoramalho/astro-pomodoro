@@ -52,7 +52,6 @@ import Podcast from "./Podcast.astro";
             position: relative;
             z-index: 5;
             max-width: 650px;
-            padding: 100px 20px;
         }
 
         &__title {
@@ -61,6 +60,12 @@ import Podcast from "./Podcast.astro";
             line-height: 145%;
             color: #FFFFFF;
             margin-bottom: 15px;
+            margin-top: 0;
+
+            @media (max-width: 600px) {
+                font-size: 30px;
+                margin-bottom: 10px;
+            }
         }
 
         &__text {
@@ -69,6 +74,10 @@ import Podcast from "./Podcast.astro";
             font-size: 18px;
             line-height: 145%;
             color: #C6C6C6;
+
+            @media (max-width: 600px) {
+                font-size: 16px;
+            }
         }
     }
 </style>

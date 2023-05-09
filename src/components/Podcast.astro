@@ -5,9 +5,10 @@ const { rank, title, text, spotify, color, position } = Astro.props;
 
 <div class="podcast">
     <CircleBlur class={`podcast__circle--${position}`} color={color} />
-    <h3 class="podcast__title">{rank}. {title}</h3>
+    <h2 class="podcast__title">{rank}. {title}</h2>
     <p class="podcast__text">{text}</p>
     <iframe
+        title="spotify podcast player"
         class="podcast__spotify"
         src={`https://open.spotify.com/embed/show/${spotify}?utm_source=generator&theme=0`}
         width="100%"
@@ -19,6 +20,10 @@ const { rank, title, text, spotify, color, position } = Astro.props;
 <style lang="scss">
     .podcast {
         margin-top: 60px;
+
+        @media (max-width: 600px) {
+            margin-top: 30px;
+        }
 
         &__circle--left {
             left: -65%;
@@ -36,6 +41,10 @@ const { rank, title, text, spotify, color, position } = Astro.props;
             line-height: 145%;
             color: #E1E1E1;
             margin-bottom: 20px;
+
+            @media (max-width: 600px) {
+                font-size: 24px;
+            }
         }
 
         &__text {
@@ -44,6 +53,10 @@ const { rank, title, text, spotify, color, position } = Astro.props;
             line-height: 145%;
             color: #D9D9D9;
             margin-bottom: 30px;
+
+            @media (max-width: 600px) {
+                font-size: 16px;
+            }
         }
 
         &__spotify {
