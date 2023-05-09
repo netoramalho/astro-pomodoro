@@ -1,0 +1,74 @@
+---
+import Container from "./Container.astro";
+import Grain from "./Grain.astro";
+import Podcast from "./Podcast.astro";
+---
+
+<section class="podcasts">
+    <Grain />
+    <Container class="podcasts__container">
+        <h1 class="podcasts__title">Top 3 Productivity Podcasts</h1>
+        <p class="podcasts__text">
+            Looking to follow productivity leaders or just get some awesome advice? These 3 are the very best productivity podcasts.
+        </p>
+        <div class="podcasts__list">
+            <Podcast
+                rank="01"
+                title="Beyond the To-Do List"
+                text="Hosted by Erik Fisher, Beyond The To-Do List focuses on how you can utilize productivity, both in your personal and professional daily schedules. From looking at the science of productivity to discussing how to live a more meaningful life, this podcast touches on it all."
+                spotify="2wBDkJDfAX26XwwjS4tCt6"
+                position="left"
+                color="teal"
+            />
+            <Podcast
+                rank="02"
+                title="The 5 AM Miracle Podcast"
+                text="This is a well-established podcast with 6 award nominations, 10 million downloads and counting, and over 400+ episodes. It currently occupies the #1 spot for ‘Self-Help + Business’ on Apple Podcasts."
+                spotify="4hHWmzZ4WlE0ZvD23h33xf"
+                position="right"
+                color="purple"
+            />
+            <Podcast
+                rank="03"
+                title="Getting Things Done"
+                text="From beginner productivity enthusiasts to a range of top-thinkers, Getting Things Done has had just about everyone on their podcast. With 135 episodes and counting, David Allen discusses concepts of productivity with a range of guests."
+                spotify="21mSaFgOhfR7TT8MKxF41n"
+                position="left"
+                color="blue"
+            />
+        </div>
+    </Container>
+</section>
+
+<style lang="scss">
+    .podcasts {
+        position: relative;
+        min-height: 100vh;
+        width: 100%;
+        background-color: #181818;
+        overflow: hidden;
+
+        &__container {
+            position: relative;
+            z-index: 5;
+            max-width: 650px;
+            padding: 100px 20px;
+        }
+
+        &__title {
+            font-weight: 600;
+            font-size: 40px;
+            line-height: 145%;
+            color: #FFFFFF;
+            margin-bottom: 15px;
+        }
+
+        &__text {
+            max-width: 600px;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 145%;
+            color: #C6C6C6;
+        }
+    }
+</style>
