@@ -41,6 +41,11 @@ const data = await response.json()
         align-items: center;
         gap: 25px;
         margin-top: 60px;
+        transition: transform 0.3s ease-in-out;
+
+        &:hover {
+            transform: scale(1.02);
+        }
 
         @media (max-width: 700px) {
             flex-direction: column;
@@ -50,6 +55,7 @@ const data = await response.json()
         &__circle--left {
             left: -65%;
             opacity: 0.7;
+            transition: transform 0.3s ease-in-out;
         }
 
         &__circle--right {
