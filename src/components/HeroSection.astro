@@ -64,16 +64,16 @@ import PomodoroCard from "./PomodoroCard.astro";
         }
     }
 
-    // @keyframes fade-right {
-    //     from { opacity: 0.01; transform: translateX(-5%); }
-    //     to { opacity: 1; transform: translateX(0); }
-    // }
+    @keyframes fade-right {
+        from { opacity: 0.01; transform: translateX(-5%); }
+        to { opacity: 1; transform: translateX(0); }
+    }
     .quote {
         max-width: 40vw;
         opacity: 0.01;
-        // transform: translateX(-5%);
-        // animation: fade-right 400ms ease-in-out forwards;
-        // animation-delay: 200ms;
+        transform: translateX(-5%);
+        animation: fade-right 400ms ease-in-out forwards;
+        animation-delay: 200ms;
 
         color: rgba(255, 255, 255, 0.6);
         font-size: 36px;
@@ -85,10 +85,10 @@ import PomodoroCard from "./PomodoroCard.astro";
         }
     }
 
-    // @keyframes fade-up {
-    //     from { opacity: 0.01; transform: translateY(10%); }
-    //     to { opacity: 1; transform: translateY(0); }
-    // }
+    @keyframes fade-up {
+        from { opacity: 0.01; transform: translateY(10%); }
+        to { opacity: 1; transform: translateY(0); }
+    }
 
     .by {
         color: rgba(255, 255, 255, 0.4);
@@ -96,9 +96,9 @@ import PomodoroCard from "./PomodoroCard.astro";
         font-size: 16px;
         line-height: 140%;
         text-align: center;
-        // opacity: 0.01;
-        // transform: translateY(10%);
-        // animation: fade-up 300ms ease-in forwards;
+        opacity: 0.01;
+        transform: translateY(10%);
+        animation: fade-up 300ms ease-in forwards;
         animation-delay: 800ms;
         margin-bottom: 41px;
 
