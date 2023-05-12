@@ -4,17 +4,6 @@ const { color, class: className } = Astro.props;
 
 <div id="circle" class:list={['circle-blur', `circle-blur--${color}`, className]} />
 
-<script is:inline>
-document.addEventListener('mousemove', function(e) {
-    let circle = document.getElementById('circle');
-    const offset = circle.offsetWidth / 2
-    let left = e.x - offset;
-    let top = e.y - offset;
-    circle.style.left = `${left}px`;
-    circle.style.top = `${top}px`;
-});
-</script>
-
 <style lang="scss">
     .circle-blur {
         position: absolute;
