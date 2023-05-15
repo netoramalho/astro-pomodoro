@@ -47,9 +47,11 @@ const { title } = Astro.props;
 			U+FEFF,
 			U+FFFD;
 	}
+	
 	:root {
 		--color: 263;
 	}
+
 	html, body {
 		font-family: 'Work Sans', sans-serif;
 		-webkit-font-smoothing: antialiased;
@@ -58,8 +60,24 @@ const { title } = Astro.props;
 		margin: 0;
 		padding: 0;
 	}
-	code {
-		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-			Bitstream Vera Sans Mono, Courier New, monospace;
-	}
+
+	@keyframes fade-down {
+        from { opacity: 0; transform: translateY(-10%); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fade-up {
+        from { opacity: 0.01; transform: translateY(10%); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+	@keyframes fade-right {
+        from { opacity: 0.01; transform: translateX(-5%); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+	
+	@keyframes fade-left {
+        from { opacity: 0.01; transform: translateX(5%); }
+        to { opacity: 1; transform: translateX(0); }
+    }
 </style>

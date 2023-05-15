@@ -7,33 +7,22 @@ import PomodoroCard from "./PomodoroCard.astro";
 ---
 
 <section class="hero">
-    <CircleBlur id="following-circle" />
+    <CircleBlur class="hero__circle" />
     <Grain />
-    <Container class="container">
+    <Container class="hero__container">
         <Nav />
-        <div class="wrap">
-            <p class="quote">
+        <div class="hero__wrap">
+            <p class="hero__quote">
                 “Productivity is being able to do things that you were never able to do before.” — Franz Kafka
             </p>
 
             <PomodoroCard />
         </div>
-        <div class="by">
+        <div class="hero__by">
             Designed & Built by <a href="https://netoramalho.dev" target="_blank">Neto Ramalho</a>
         </div>
     </Container>
 </section>
-
-<script>
-    const circle = document.getElementById('following-circle')
-    const offset = circle.offsetWidth / 2
-    document.querySelector('section.hero').addEventListener('mousemove', (e) => {
-        const left = e.x - offset;
-        const top = e.y - offset;
-        circle.style.left = `${left}px`;
-        circle.style.top = `${top}px`;
-    })
-</script>
 
 <style lang="scss">
     .hero {
@@ -43,78 +32,74 @@ import PomodoroCard from "./PomodoroCard.astro";
         background-color: hsla(var(--color), 43%, 16%, 1);
         transition: background-color 400ms ease-in-out;
         overflow: hidden;
-    }
 
-    .container {
-        position: relative;
-        z-index: 5;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-content: space-between;
-        min-height: 100vh;
-        padding-top: 0;
-        padding-bottom: 0;
-    }
-
-    .wrap {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 90px;
-        width: 100%;
-        margin: 40px 0;
-
-        @media (max-width: 950px) {
-            gap: 50px;
+        &__circle {
+            inset: 0;
+            margin: auto;
         }
 
-        @media (max-width: 800px) {
-            flex-direction: column;
-            gap: 30px;
+        &__container {
+            position: relative;
+            z-index: 5;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-content: space-between;
+            min-height: 100vh;
+            padding-top: 0;
+            padding-bottom: 0;
         }
-    }
 
-    @keyframes fade-right {
-        from { opacity: 0.01; transform: translateX(-5%); }
-        to { opacity: 1; transform: translateX(0); }
-    }
-    .quote {
-        max-width: 40vw;
-        opacity: 0.01;
-        transform: translateX(-5%);
-        animation: fade-right 400ms ease-in-out forwards;
-        animation-delay: 200ms;
+        &__wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 90px;
+            width: 100%;
+            margin: 40px 0;
 
-        color: rgba(255, 255, 255, 0.6);
-        font-size: 36px;
-        font-size: clamp(26px, 2.4vw, 56px);
-        line-height: 145%;
+            @media (max-width: 950px) {
+                gap: 50px;
+            }
 
-        @media (max-width: 800px) {
-            max-width: 500px;
+            @media (max-width: 800px) {
+                flex-direction: column;
+                gap: 30px;
+            }
         }
-    }
 
-    @keyframes fade-up {
-        from { opacity: 0.01; transform: translateY(10%); }
-        to { opacity: 1; transform: translateY(0); }
-    }
+        &__quote {
+            max-width: 40vw;
+            opacity: 0.01;
+            transform: translateX(-5%);
+            animation: fade-right 400ms ease-in-out forwards;
+            animation-delay: 200ms;
 
-    .by {
-        color: rgba(255, 255, 255, 0.4);
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 140%;
-        text-align: center;
-        opacity: 0.01;
-        transform: translateY(10%);
-        animation: fade-up 300ms ease-in forwards;
-        animation-delay: 800ms;
-        margin-bottom: 41px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 36px;
+            font-size: clamp(26px, 2.4vw, 56px);
+            line-height: 145%;
 
-        a {
-            color: #FFFFFF;
+            @media (max-width: 800px) {
+                max-width: 500px;
+            }
+        }
+
+        &__by {
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 140%;
+            text-align: center;
+            opacity: 0.01;
+            transform: translateY(10%);
+            animation: fade-up 300ms ease-in forwards;
+            animation-delay: 800ms;
+            margin-bottom: 41px;
+
+            a {
+                color: #FFFFFF;
+            }
         }
     }
 </style>

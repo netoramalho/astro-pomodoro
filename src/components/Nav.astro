@@ -1,15 +1,17 @@
-<nav>
-    <div class="brand">focus.<span>netoramalho.dev</span></div>
-    <div class="flex" />
-    <a href="https://github.com/netoramalho/astro-pomodoro" target="_blank">GitHub</a>
+<nav class="nav">
+    <div class="nav__brand">focus.<span>netoramalho.dev</span></div>
+    <div class="nav__flex" />
+    <a
+        href="https://github.com/netoramalho/astro-pomodoro"
+        target="_blank"
+        class="nav__link"
+    >
+        GitHub
+    </a>
 </nav>
 
 <style lang="scss">
-    @keyframes fade-down {
-        from { opacity: 0; transform: translateY(-10%); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    nav {
+    .nav {
         position: relative;
         display: flex;
         width: 100%;
@@ -18,26 +20,26 @@
         transform: translateY(-10%);
         animation: fade-down 300ms ease-in forwards;
         animation-delay: 800ms;
-    }
 
-    .brand {
-        font-size: 16px;
-        color: white;
-        font-weight: 700;
+        &__brand {
+            font-size: 16px;
+            color: white;
+            font-weight: 700;
 
-        span {
-            font-weight: 400;
-            opacity: 40%;
+            span {
+                font-weight: 400;
+                opacity: 40%;
+            }
         }
-    }
 
-    .flex {
-        flex: 1;
-    }
+        &__flex {
+            flex: 1;
+        }
 
-    a {
-        font-size: 16px;
-        color: rgba(255, 255, 255, 0.4);
-        text-decoration: underline;
+        &__link {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.4);
+            text-decoration: underline;
+        }
     }
 </style>
