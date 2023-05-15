@@ -4,7 +4,7 @@ const { id, color, class: className } = Astro.props;
 
 <div id={id} class:list={['circle-blur', `circle-blur--${color}`, className]} />
 
-<style lang="scss" is:inline>
+<style lang="scss">
     .circle-blur {
         position: absolute;
         max-width: 70vw;
