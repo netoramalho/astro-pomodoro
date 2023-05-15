@@ -7,7 +7,7 @@ import PomodoroCard from "./PomodoroCard.astro";
 ---
 
 <section class="hero">
-    <CircleBlur />
+    <CircleBlur id="following-circle" />
     <Grain />
     <Container class="container">
         <Nav />
@@ -23,6 +23,17 @@ import PomodoroCard from "./PomodoroCard.astro";
         </div>
     </Container>
 </section>
+
+<script is:inline>
+    document.addEventListener('mousemove', function(e) {
+        let circle = document.getElementById('following-circle');
+        const offset = circle.offsetWidth / 2
+        let left = e.x - offset;
+        let top = e.y - offset;
+        circle.style.left = `${left}px`;
+        circle.style.top = `${top}px`;
+    });
+</script>
 
 <style lang="scss">
     .hero {
