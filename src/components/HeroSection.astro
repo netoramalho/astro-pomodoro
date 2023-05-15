@@ -25,14 +25,14 @@ import PomodoroCard from "./PomodoroCard.astro";
 </section>
 
 <script is:inline>
-    document.addEventListener('mousemove', function(e) {
-        let circle = document.getElementById('following-circle');
-        const offset = circle.offsetWidth / 2
+    const circle = document.getElementById('following-circle')
+    const offset = circle.offsetWidth / 2
+    document.querySelector('section.hero').addEventListener('mousemove', (e) => {
         let left = e.x - offset;
         let top = e.y - offset;
         circle.style.left = `${left}px`;
         circle.style.top = `${top}px`;
-    });
+    })
 </script>
 
 <style lang="scss">
