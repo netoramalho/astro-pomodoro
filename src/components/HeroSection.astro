@@ -24,12 +24,12 @@ import PomodoroCard from "./PomodoroCard.astro";
     </Container>
 </section>
 
-<script is:inline>
+<script>
     const circle = document.getElementById('following-circle')
     const offset = circle.offsetWidth / 2
     document.querySelector('section.hero').addEventListener('mousemove', (e) => {
-        let left = e.x - offset;
-        let top = e.y - offset;
+        const left = e.x - offset;
+        const top = e.y - offset;
         circle.style.left = `${left}px`;
         circle.style.top = `${top}px`;
     })
