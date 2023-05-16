@@ -27,7 +27,7 @@
         const context = new AudioContext()
 
         const gain = context.createGain()
-        gain.gain.value = 0.1
+        gain.gain.value = 0.5
         gain.connect(context.destination)
         
         const oscillator = context.createOscillator()
@@ -53,7 +53,6 @@
         if (!silent) {
             playBeat()
             document.title = 'time is up!'
-            alert('time is up!')
         } else {
             document.title = 'Focus'
         }
@@ -71,16 +70,22 @@
         document.title = time
     }
 
-    const toggleTimer = () => {
+    const toggleTimer = async () => {
         if (interval) { return onComplete(true) }
         whenTimerEnds = new Date(Date.now() + durationInMinutes*60000)
         interval = setInterval(updateTimer, 1000)
         document.getElementById('action').textContent = 'Stop'
         disablePicker()
         playBeat(300)
+        let screenLock = await getScreenLock()
     }
 
     document.getElementById('action').addEventListener('click', toggleTimer)
+
+    const durationColors = new Map()
+    durationColors.set(5, '190')
+    durationColors.set(15, '210')
+    durationColors.set(25, '263')
 
     const updateTimeDuration = (duration) => {
         if (interval) { return }
@@ -88,6 +93,7 @@
         document.getElementById('timer').textContent = `${durationInMinutes}:00`
         document.querySelector('.pomodoro-card__picker .active').classList.remove("active")
         document.getElementById(`pick_${duration}`).classList.add("active")
+        document.querySelector(':root').style.setProperty('--color', durationColors.get(duration))
     }
 
     document.getElementById('pick_5').addEventListener('click', () => { updateTimeDuration(5) })
@@ -100,6 +106,16 @@
 
     const enablePicker = () => {
         document.querySelector('.pomodoro-card__picker').classList.remove("pomodoro-card__picker--disabled")
+    }
+
+    const getScreenLock = async () => {
+        let screenLock;
+        try {
+            screenLock = await navigator.wakeLock.request('screen');
+        } catch(err) {
+            console.log(err.name, err.message);
+        }
+        return screenLock;
     }
 </script>
 
