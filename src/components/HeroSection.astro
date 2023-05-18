@@ -28,8 +28,9 @@ import PomodoroCard from "./PomodoroCard.astro";
     .hero {
         position: relative;
         width: 100%;
-        background-color: hsla(var(--color), 43%, 16%, 1);
-        transition: background-color 400ms ease-in-out;
+        background-image: url('/images/hero-cover.webp');
+        background-size: cover;
+        background-position: bottom;
         overflow: hidden;
 
         &__circle {
@@ -47,6 +48,7 @@ import PomodoroCard from "./PomodoroCard.astro";
             padding-top: 0;
             padding-bottom: 0;
             gap: 100px;
+            min-height: 100vh;
 
             @media (max-width: 950px) {
                 gap: 50px;
@@ -82,7 +84,7 @@ import PomodoroCard from "./PomodoroCard.astro";
             animation: fade-right 400ms ease-in-out forwards;
             animation-delay: 200ms;
 
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255, 255, 255, 0.8);
             font-size: 36px;
             font-size: clamp(26px, 2.4vw, 56px);
             line-height: 145%;
